@@ -770,7 +770,7 @@ function renderPrivacyPolicyPage() {
         <h2>9. Contact Us</h2>
         <p>
           If you have any questions regarding this Privacy Policy, please contact us at
-          <strong>truedesignstvm@gmail.com</strong>.
+          <strong>truedezignstvm@gmail.com</strong>.
         </p>
 
       </article>
@@ -784,11 +784,18 @@ function renderContactUsPage() {
     <section class="py-20 max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="section-title text-center mb-10">Contact Us</h2>
       <div class="bg-gray-50 p-6 rounded-lg shadow-md space-y-4">
-        <h3 class="text-xl font-bold tracking-tight">True Designs</h3>
+        <h3 class="text-xl font-bold tracking-tight">True Dezigns</h3>
         <p><strong>Address:</strong> Pallipuram, Thiruvananthapuram, Kerala 695584, India</p>
         <p><strong>Store Timings:</strong> 10 AM – 7 PM (Monday to Saturday)</p>
-        <p><strong>Mobile No:</strong> +91 9745845989</p>
-        <p><strong>Email:</strong> <a href="mailto:truedesignstvm@gmail.com" class="text-blue-600 hover:underline">truedesignstvm@gmail.com</a></p>
+        <p><strong>Mobile No:</strong> +91 9745845989 and +91 6282894379</p>
+<p>
+  <strong>Email:</strong> 
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=truedezignstvm@gmail.com" 
+     target="_blank" 
+     class="text-blue-600 hover:underline">
+     truedezignstvm@gmail.com
+  </a>
+</p>
         <div class="mt-8 pt-4 border-t border-gray-200">
           <h3 class="text-sm font-bold uppercase mb-2">Locate Us</h3>
           <div class="relative pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-inner">
