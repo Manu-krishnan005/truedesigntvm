@@ -46,6 +46,13 @@ def favicon():
     )
 
 
+@app.route("/static/site.webmanifest", methods=["GET"])
+def webmanifest():
+    """Serve web manifest so Google/browsers recognise the site icon."""
+    return send_from_directory(STATIC_DIR, "site.webmanifest",
+                               mimetype="application/manifest+json")
+
+
 if __name__ == "__main__":
     # Helpful startup info
     print("Starting True Designs minimal Flask app")
