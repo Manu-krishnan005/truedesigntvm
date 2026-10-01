@@ -1,7 +1,7 @@
 # app.py - minimal dev server (pre-email / pre-deploy state)
 
 import os
-from flask import Flask, render_template, jsonify, Response
+from flask import Flask, render_template, jsonify, send_from_directory
 
 # Project folders (adjust if your layout differs)
 TEMPLATES_DIR = "templates"
@@ -15,26 +15,6 @@ def index():
     """Serve the main single-page app (index.html in templates/)."""
     return render_template("index.html")
 
-@app.route("/robots.txt", methods=["GET"])
-def robots():
-    robots_txt = """User-agent: *
-Allow: /
-
-Sitemap: https://www.truedezingns.com/sitemap.xml
-"""
-    return Response(robots_txt, mimetype="text/plain")
-
-
-@app.route("/sitemap.xml", methods=["GET"])
-def sitemap():
-    sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://www.truedezingns.com/</loc>
-    </url>
-</urlset>
-"""
-    return Response(sitemap_xml, mimetype="application/xml")
 
 @app.route("/_status", methods=["GET"])
 def status():
@@ -44,6 +24,18 @@ def status():
         "service": "True Designs (dev)",
         "env": os.environ.get("FLASK_ENV", "development")
     })
+
+
+@app.route("/sitemap.xml", methods=["GET"])
+def sitemap():
+    """Serve sitemap for Google indexing."""
+    return send_from_directory(STATIC_DIR, "sitemap.xml", mimetype="application/xml")
+
+
+@app.route("/robots.txt", methods=["GET"])
+def robots():
+    """Serve robots.txt for search engine crawlers."""
+    return send_from_directory(STATIC_DIR, "robots.txt", mimetype="text/plain")
 
 
 if __name__ == "__main__":
