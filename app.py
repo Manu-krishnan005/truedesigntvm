@@ -38,6 +38,14 @@ def robots():
     return send_from_directory(STATIC_DIR, "robots.txt", mimetype="text/plain")
 
 
+@app.route("/favicon.ico", methods=["GET"])
+def favicon():
+    """Serve favicon from root so browsers and Google can always find it."""
+    return send_from_directory(
+        f"{STATIC_DIR}/images", "favicon.png", mimetype="image/png"
+    )
+
+
 if __name__ == "__main__":
     # Helpful startup info
     print("Starting True Designs minimal Flask app")
