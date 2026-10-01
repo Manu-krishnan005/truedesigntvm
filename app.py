@@ -11,28 +11,9 @@ app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 
 
 @app.route("/", methods=["GET"])
-def index(): 
-    """Serve the main single-page app (index.html in templates)."""
+def index():
+    """Serve the main single-page app (index.html in templates/)."""
     return render_template("index.html")
-
-
-@app.route("/robots.txt")
-def robots():
-    return """User-agent: *
-Allow: /
-
-Sitemap: https://www.truedezingns.com/sitemap.xml
-""", 200, {"Content-Type": "text/plain"}
-
-@app.route("/sitemap.xml")
-def sitemap():
-    return """<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://www.truedezingns.com/</loc>
-    </url>
-</urlset>
-""", 200, {"Content-Type": "application/xml"}
 
 
 @app.route("/_status", methods=["GET"])
