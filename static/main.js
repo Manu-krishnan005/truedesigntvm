@@ -81,9 +81,7 @@
       images: [
     '/static/images/products/stoles.jpg',
     '/static/images/products/stoles-2.jpg',
-    '/static/images/products/stoles-3.jpg',
-    '/static/images/products/stoles-4.jpg',
-    '/static/images/products/stoles-5.jpg'
+    '/static/images/products/stoles-3.jpg'
   ],
 
       description: 'Personalised Hoodies for convocation ceremonies.',
