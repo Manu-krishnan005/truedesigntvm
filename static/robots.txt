@@ -1,4 +1,4 @@
 ﻿User-agent: *
 Allow: /
 
-Sitemap: https://truedezingns.com/sitemap.xml
+Sitemap: https://www.truedezingns.com/sitemap.xml
