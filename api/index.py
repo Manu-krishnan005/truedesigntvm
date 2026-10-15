@@ -11,21 +11,30 @@ from app import app
 
 class VercelPathMiddleware:
     """
-    WSGI middleware that rewrites the internal Vercel path /api/index
-    back to the original request path, without touching /static/ requests.
-    Vercel passes the true client path in the X-Vercel-Deployment-Url or
-    in PATH_INFO depending on how the rewrite rule is set up.
+    WSGI middleware that restores the original client request path.
+
+    When Vercel routes via 'routes' (not 'rewrites'), it passes the original
+    PATH_INFO correctly. However, when 'rewrites' are used, PATH_INFO becomes
+    '/api/index' for all requests. This middleware uses the x-vercel-rewrite
+    or x-forwarded-uri header to restore the original path.
     """
     def __init__(self, wsgi_app):
         self.wsgi_app = wsgi_app
 
     def __call__(self, environ, start_response):
-        path = environ.get("PATH_INFO", "")
+        # Vercel passes the original client path in HTTP_X_NOW_ROUTE_MATCHES
+        # or HTTP_X_MATCHED_PATH. Use whichever is available.
+        original_path = (
+            environ.get("HTTP_X_MATCHED_PATH")
+            or environ.get("HTTP_X_NOW_ROUTE_MATCHES")
+            or environ.get("HTTP_X_FORWARDED_URI")
+        )
 
-        # If Vercel internally rewrote to /api/index, restore the original path
-        # from the x-now-route-matches or from HTTP_X_FORWARDED_URI header.
-        # For a simple single-page app, just restore it to "/" so Flask serves index.html.
-        if path in ("/api/index", "/api"):
+        if original_path:
+            # Strip query string if present
+            environ["PATH_INFO"] = original_path.split("?")[0]
+        elif environ.get("PATH_INFO") in ("/api/index", "/api"):
+            # Fallback: if path is the internal rewrite destination, serve root
             environ["PATH_INFO"] = "/"
 
         return self.wsgi_app(environ, start_response)
