@@ -12,8 +12,6 @@ app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 
 
 @app.route("/", methods=["GET"])
-@app.route("/api", methods=["GET"])
-@app.route("/api/index", methods=["GET"])
 def index():
     """Serve the main single-page app (index.html in templates/)."""
     return render_template("index.html")
@@ -56,11 +54,6 @@ def webmanifest():
     return send_from_directory(STATIC_DIR, "site.webmanifest",
                                mimetype="application/manifest+json")
 
-
-@app.errorhandler(404)
-def not_found(e):
-    """Fallback handler to ensure single-page app routes render index.html."""
-    return render_template("index.html"), 200
 
 
 if __name__ == "__main__":
