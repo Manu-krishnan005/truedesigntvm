@@ -3,9 +3,10 @@
 import os
 from flask import Flask, render_template, jsonify, send_from_directory
 
-# Project folders (adjust if your layout differs)
-TEMPLATES_DIR = "templates"
-STATIC_DIR = "static"
+# Project folders (absolute paths ensure reliability in serverless and local runs)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 
@@ -42,7 +43,7 @@ def robots():
 def favicon():
     """Serve favicon from root so browsers and Google can always find it."""
     return send_from_directory(
-        f"{STATIC_DIR}/images", "favicon.png", mimetype="image/png"
+        os.path.join(STATIC_DIR, "images"), "favicon.png", mimetype="image/png"
     )
 
 
