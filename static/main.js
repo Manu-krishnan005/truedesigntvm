@@ -101,6 +101,18 @@
       rentalOptions: { durations: ['Permanent Purchase'] },
       keywords: ['certificate','medal']
     },
+    'academic-oath-scrolls': {
+      key: 'academic-oath-scrolls',
+      name: 'Academic Oath Scrolls',
+      category: 'Academic Oath Scrolls',
+      designer: 'True Dezigns',
+      images: ['/static/images/products/academic-oath-scroll-1.jpg','/static/images/products/academic-oath-scroll-2.jpg','/static/images/products/academic-oath-scroll-3.jpg','/static/images/products/academic-oath-scroll-4.jpg','/static/images/products/academic-oath-scroll-5.jpg'],
+      colour: 'Deep Red / Ivory / Maroon',
+      material: 'Premium velvet fabric',
+      description: 'Academic oath scrolls are a symbol of tradition, honour and professional commitment presented during convocation ceremonies. Gold-embossed institutional or Hippocratic oath text, decorative golden borders, PVC scroll rods and optional DTF custom printing and cover stickers. Approximate dimensions: height 26–33 cm, width 17–19 cm. Price on request; varies by design and customisation.',
+      rentalOptions: { durations: ['Purchase / Custom Order'] },
+      keywords: ['academic','oath','scroll','hippocratic','convocation','pledge','velvet']
+    },
     'convocation-file-1': {
       key: 'convocation-file-1',
       name: 'Convocation File',
@@ -113,6 +125,15 @@
     }
   };
 
+  // Share the existing product catalogue with the rental enquiry, without duplicating products.
+  // Colour, material and price are intentionally left unspecified when not present in product data.
+  window.trueDezignsCatalogue = Object.values(PRODUCTS).map(p => ({
+    key:p.key, name:p.name, category:p.category, image:p.images?.[0] || '',
+    images:p.images || [], colour:p.colour || p.color || '',
+    material:p.material || '', price:p.rentalPrice ?? p.price ?? null,
+    description:p.description || ''
+  }));
+
   /* ---------- CATEGORY MAP ---------- */
   const CATEGORY_MAP = {
     'student-gowns': { title: 'Student Gowns', productKeys: ['student-gown-black'] },
@@ -123,6 +144,7 @@
     'customised-Hoodies': { title: 'Customised Hoodies', productKeys: ['customised-Hoodies-1'] },
     'framed-certificates': { title: 'Framed Certificates', productKeys: ['framed-certificate-1'] },
     'convocation-files': { title: 'Convocation Files', productKeys: ['convocation-file-1'] },
+    'academic-oath-scrolls': { title: 'Academic Oath Scrolls', productKeys: ['academic-oath-scrolls'] },
     'gowns': { title: 'All Gowns', productKeys: ['student-gown-black','guest-gown','faculty-gown','kids-gown-standard','phd-gown-black'] },
     'default': { title: 'Product Listing', productKeys: Object.keys(PRODUCTS) }
   };
@@ -260,6 +282,11 @@
   }
 
   window.checkoutViaWhatsApp = checkoutViaWhatsApp;
+  // Read-only bridge: lets the rental enquiry prefill from the existing shopping bag.
+  window.getTrueDezignsRentalCart = () => cartItems.map(item => ({
+    name: PRODUCTS[item.productKey]?.name || item.productKey,
+    quantity: item.quantity, size: item.size, duration: item.duration, startDate: item.startDate
+  }));
 
 
   /* ---------- CATEGORY / PRODUCT RENDERS ---------- */

@@ -5,11 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="BqSvUzXDJhFVWE8LE-iA7YQymeL5JYqnbMOO9IrybE8" />
-  <title>True Dezigns | True Design TVM Premium Convocation Gowns, Thiruvananthapuram</title>
-  <meta name="description"
-    content="True Dezigns (True Design TVM) - Rent premium convocation &amp; graduation gowns in Trivandrum (Thiruvananthapuram), Kerala. Best convocation dress rental in TVM for students, faculty, PhD holders &amp; kids. True Design convocation dress Trivandrum." />
-  <meta name="keywords"
-    content="True Design, True Designs, True Design TVM, True Dezigns, True Design Thiruvananthapuram, True Design Trivandrum, convocation dress TVM, convocation dress Trivandrum, convocation dress Kerala, convocation gowns Thiruvananthapuram, graduation gown rental Kerala, rental gown Trivandrum, rental gown Kerala, convocation gown rent TVM, faculty gowns TVM, PhD gown rental, student gown hire, convocation accessories Kerala, gown rental TVM, graduation dress rental Trivandrum, convocation dress rental near me" />
+  <title>Convocation Gown Rental in Trivandrum, Kerala | True Dezigns</title>
+  <meta name="description" content="True Dezigns offers convocation gown rental in Trivandrum, Kerala, customised convocation shawls, framed medal certificates, academic oath scrolls and graduation accessories. Enquire today." />
+  <meta name="keywords" content="customised convocation shalls, framed medal certificates, rental gown near trivandrum and kerala, best rental convocation items in india, customised convocation shawls, customized convocation shawls, convocation stoles, graduation stoles, custom graduation sashes, convocation gown rental Trivandrum, convocation gown rental Thiruvananthapuram, convocation gown rental Kerala, graduation gown rental near me, rental gowns in Trivandrum, rental gowns in Kerala, academic gown hire Kerala, student graduation gowns, faculty convocation robes, PhD convocation gowns, guest graduation gowns, kids graduation gowns, convocation cap and gown rental, convocation accessories India, academic oath scrolls, Hippocratic oath scrolls, customised graduation hoodies, framed graduation certificates, medal certificate framing, convocation files, graduation dress rental India, True Dezigns, True Design TVM, True Designs Trivandrum" />
   <meta name="author" content="True Dezigns" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.truedezingns.com/" />
@@ -102,7 +100,10 @@
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "PhD Gowns"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kids Gowns"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Guest Gowns"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stoles & Accessories"}}
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stoles & Accessories"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Customised Convocation Shawls and Stoles"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Framed Medal Certificates"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Academic Oath Scrolls"}}
           ]
         }
       },
@@ -131,7 +132,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Site Styles -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=3.1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css', v='smooth-spacing-3') }}" />
 </head>
 
 <body>
@@ -164,6 +165,7 @@
           style="margin-bottom:10px">
           Checkout via WhatsApp
         </button>
+        <a href="/request-rental" id="td-cart-rental-link" class="btn btn-outline btn-full" style="display:block;text-align:center;margin-bottom:10px">Build a Rental Request</a>
         <button id="add-more-items-btn" class="btn btn-outline btn-full">Continue Shopping</button>
       </div>
     </div>
@@ -208,6 +210,7 @@
                   <li><a href="#category/framed-certificates" class="nav-link" role="menuitem">Framed Certificates</a>
                   </li>
                   <li><a href="#category/convocation-files" class="nav-link" role="menuitem">Convocation Files</a></li>
+                  <li><a href="#category/academic-oath-scrolls" class="nav-link" role="menuitem">Academic Oath Scrolls</a></li>
                 </ul>
               </div>
             </div>
@@ -231,6 +234,7 @@
         <li class="nav-link-item">
           <a href="#blog" class="nav-link">Collaborations</a>
         </li>
+        <li class="nav-link-item"><a href="/request-rental" class="nav-link td-rental-nav">Request a Rental</a></li>
       </ul>
 
       <!-- Icons -->
@@ -249,6 +253,7 @@
         </button>
 
         <!-- Mobile toggle -->
+        <a class="td-header-wishlist" href="#wishlist" aria-label="Open wishlist">♡ <span id="wishlist-count">0</span></a>
         <button class="nav-icon-btn mobile-toggle" id="mobile-menu-btn" aria-label="Open Menu">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -269,6 +274,7 @@
     <a href="#category/kids-gowns" class="nav-link">Kids Gowns</a>
     <a href="#brochures" class="nav-link">Brochures</a>
     <a href="#blog" class="nav-link">Collaborations</a>
+    <a href="/request-rental" class="nav-link td-rental-nav">Request a Rental</a>
     <a href="#cause/gowns" class="nav-link">Contact Us</a>
   </div>
 
@@ -295,6 +301,16 @@
             alt="Convocation gowns hero" fetchpriority="high" class="hero-fallback-img" />
         </div>
         <div class="hero-overlay"></div>
+        <div class="td-hero-watermark" aria-hidden="true">TRUE<br>DEZIGNS</div>
+        <div class="td-showcase" aria-label="Featured gown collections">
+          <div class="td-showcase-stage" id="td-showcase-stage">
+            <a class="td-showcase-card" href="#product/student-gown-black" data-label="Student Gowns" data-category="STUDENT COLLECTION"><img src="{{ url_for('static', filename='images/products/student-gown-1.jpg') }}" alt="Student graduation gown" loading="eager"><span class="td-showcase-card-caption"><strong>Student Gowns</strong></span></a>
+            <a class="td-showcase-card" href="#category/faculty-gowns" data-label="Faculty Gowns" data-category="FACULTY COLLECTION"><img src="{{ url_for('static', filename='images/home-faculty.jpg') }}" alt="Faculty graduation gowns" loading="eager"><span class="td-showcase-card-caption"><strong>Faculty Gowns</strong></span></a>
+            <a class="td-showcase-card" href="#product/guest-gown" data-label="Guest Gowns" data-category="GUEST COLLECTION"><img src="{{ url_for('static', filename='images/products/guest-gown-1.jpg') }}" alt="Guest graduation gown" loading="lazy"><span class="td-showcase-card-caption"><strong>Guest Gowns</strong></span></a>
+            <a class="td-showcase-card" href="#category/customised-Hoodies" data-label="Customised Hoodies" data-category="HOODIES COLLECTION"><img src="{{ url_for('static', filename='images/products/stoles.jpg') }}" alt="Customised Hoodies collection product image" loading="lazy"><span class="td-showcase-card-caption"><strong>Customised Hoodies</strong></span></a>
+          </div>
+          <div class="td-showcase-controls"><button type="button" id="td-showcase-prev" aria-label="Previous featured gown">&#8592;</button><button type="button" id="td-showcase-next" aria-label="Next featured gown">&#8594;</button><span id="td-showcase-count" aria-live="polite">01 / 04</span></div>
+        </div>
         <div class="hero-content">
           <p class="hero-eyebrow fade-up">True Dezigns &mdash; Thiruvananthapuram</p>
           <h1 class="hero-title fade-up fade-up-delay-1">
@@ -307,6 +323,61 @@
         </div>
       </section>
 
+
+      <!-- Jewellery-reference-inspired editorial collection experience; existing assets only -->
+      <section class="td-editorial-feature" aria-label="The True Dezigns experience">
+        <div class="td-editorial-feature-image" role="img" aria-label="Academic graduation gowns"></div>
+        <div class="td-editorial-feature-shade"></div>
+        <div class="td-editorial-feature-copy">
+          <span class="td-editorial-kicker">THE ART OF GRADUATION</span>
+          <h2>Every milestone<br>deserves <em>distinction.</em></h2>
+          <p>From your first graduation to your proudest academic achievement, discover the gown that belongs to your moment.</p>
+          <a class="td-editorial-gold-button" href="#category/student-gowns">Explore the collection <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="td-editorial-mini-cards" aria-label="Explore gown types">
+          <a href="#category/student-gowns"><img src="{{ url_for('static', filename='images/home-student.jpg') }}" alt=""><span>Student gowns</span></a>
+          <a href="#category/faculty-gowns"><img src="{{ url_for('static', filename='images/home-faculty.jpg') }}" alt=""><span>Faculty gowns</span></a>
+          <a href="#category/kids-gowns"><img src="{{ url_for('static', filename='images/kids-gown.jpg') }}" alt=""><span>Kids gowns</span></a>
+        </div>
+      </section>
+
+      <!-- Animated category constellation: adapted from the supplied reference video -->
+      <section class="td-diamond-discovery" aria-labelledby="td-diamond-heading">
+        <div class="td-diamond-shell">
+          
+          <h2 id="td-diamond-heading">EVERY KIND <em>of achievement</em></h2>
+          <p class="td-diamond-subtitle">A gown for every milestone.</p>
+          <div class="td-diamond-stage" id="td-diamond-stage">
+            <svg class="td-diamond-outline td-quad-outline" viewBox="0 0 500 420" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M110 140 L175 70 H325 L390 140 L250 335 Z"/>
+              <path d="M110 140 H390 M175 70 L250 335 L325 70 M175 70 L110 140 M325 70 L390 140"/>
+            </svg>
+            <a class="td-diamond-item td-diamond-item--student" href="#category/student-gowns" aria-label="Explore student gowns"><img src="{{ url_for('static', filename='images/collection-student.jpg') }}" alt="Student graduation gowns" loading="lazy"><span>STUDENTS</span></a>
+            <a class="td-diamond-item td-diamond-item--faculty" href="#category/faculty-gowns" aria-label="Explore faculty gowns"><img src="{{ url_for('static', filename='images/faculty-gowns.jpg') }}" alt="Faculty graduation gowns" loading="lazy"><span>FACULTY</span></a>
+            <a class="td-diamond-item td-diamond-item--phd" href="#category/phd-gowns" aria-label="Explore PhD gowns"><img src="{{ url_for('static', filename='images/phd-gown.jpg') }}" alt="Doctoral gown" loading="lazy"><span>PhD</span></a>
+            <a class="td-diamond-item td-diamond-item--kids" href="#category/kids-gowns" aria-label="Explore kids gowns"><img src="{{ url_for('static', filename='images/kids-gown.jpg') }}" alt="Kids graduation gowns" loading="lazy"><span>KIDS</span></a>
+          </div>
+          <nav class="td-diamond-tabs" aria-label="Browse gown categories">
+            <a href="#category/student-gowns">STUDENTS</a><a href="#category/faculty-gowns">FACULTY</a><a href="#category/phd-gowns">PhD</a><a href="#category/kids-gowns">KIDS</a><a href="#category/guest-gowns">GUESTS</a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Reference-matched navy arrivals rail; existing catalogue routes and imagery -->
+      <section class="td-ref-arrivals" aria-labelledby="td-ref-arrivals-title">
+        <div class="td-ref-arrivals-inner">
+          <div class="td-ref-arrivals-head"><div><span class="td-ref-eyebrow">CURATED FOR YOUR MILESTONE</span><h2 id="td-ref-arrivals-title">New <em>arrivals</em></h2></div><a href="#category/gowns" class="td-ref-view-all">View all gowns <span aria-hidden="true">↗</span></a></div>
+          <div class="td-ref-rail-wrap"><div class="td-ref-rail" id="td-ref-rail" tabindex="0" aria-label="Featured gown collections">
+            <a class="td-ref-product" href="#category/student-gowns"><div class="td-ref-product-image"><img src="{{ url_for('static', filename='images/collection-student.jpg') }}" loading="lazy" alt="Student gowns"><span>POPULAR</span></div><div class="td-ref-product-info"><small>STUDENT COLLECTION</small><strong>Student Gowns</strong><p>Explore academic attire for your big day</p><b>Explore collection ↗</b></div></a>
+            <a class="td-ref-product" href="#category/faculty-gowns"><div class="td-ref-product-image"><img src="{{ url_for('static', filename='images/home-faculty.jpg') }}" loading="lazy" alt="Faculty gowns"><span>FEATURED</span></div><div class="td-ref-product-info"><small>FACULTY COLLECTION</small><strong>Faculty Gowns</strong><p>Distinguished robes for academic leaders</p><b>Explore collection ↗</b></div></a>
+            <a class="td-ref-product" href="#category/phd-gowns"><div class="td-ref-product-image"><img src="{{ url_for('static', filename='images/phd-gown.jpg') }}" loading="lazy" alt="Doctoral gowns"><span>PREMIUM</span></div><div class="td-ref-product-info"><small>DOCTORAL COLLECTION</small><strong>PhD Gowns</strong><p>Celebrate your highest achievement</p><b>Explore collection ↗</b></div></a>
+            <a class="td-ref-product" href="#category/kids-gowns"><div class="td-ref-product-image"><img src="{{ url_for('static', filename='images/kids-gown.jpg') }}" loading="lazy" alt="Kids gowns"></div><div class="td-ref-product-info"><small>YOUNG GRADUATES</small><strong>Kids Gowns</strong><p>Little milestones, lasting memories</p><b>Explore collection ↗</b></div></a>
+            <a class="td-ref-product" href="#category/guest-gowns"><div class="td-ref-product-image"><img src="{{ url_for('static', filename='images/products/guest-gown-1.jpg') }}" loading="lazy" alt="Guest gowns"></div><div class="td-ref-product-info"><small>GUEST COLLECTION</small><strong>Guest Gowns</strong><p>Elegant attire for special occasions</p><b>Explore collection ↗</b></div></a>
+          </div></div>
+          <div class="td-ref-rail-controls"><button type="button" id="td-ref-rail-prev" aria-label="Scroll collections left">←</button><button type="button" id="td-ref-rail-next" aria-label="Scroll collections right">→</button></div>
+        </div>
+      </section>
+      <section class="td-ref-visit" aria-label="Visit True Dezigns"><div class="td-ref-visit-image" aria-hidden="true"></div><div class="td-ref-visit-shade"></div><div class="td-ref-visit-copy"><span class="td-ref-eyebrow">TRUE DEZIGNS · THIRUVANANTHAPURAM</span><h2>Come and <em>visit</em></h2><p>Find the perfect gown for your celebration. Connect with our team for availability, sizing and rental enquiries.</p><div class="td-ref-visit-actions"><a href="#cause/gowns" class="td-editorial-gold-button">Make an enquiry ↗</a><a href="https://wa.me/919745845989" target="_blank" rel="noopener noreferrer" class="td-ref-visit-outline">Chat on WhatsApp</a></div></div></section>
       <!-- ===== SPLIT CATEGORY PROMO ===== -->
       <!--
         data-grid-item  = marks card for morph observer
@@ -335,6 +406,38 @@
           </div>
         </a>
       </section>
+
+
+      <!-- ===== TRUST STRIP ===== -->
+      <div class="trust-strip" id="trust-strip">
+        <div class="container">
+          <div class="trust-grid">
+            <div class="trust-item fade-up">
+              <!--
+                data-count     = final numeric value
+                data-suffix    = text appended after number (e.g. "+", "★", "%")
+                data-prefix    = text prepended before number (optional)
+                data-decimals  = decimal places (default 0)
+                data-duration  = animation ms (default 1500)
+              -->
+              <div class="trust-number count-up" data-count="500" data-suffix="+" data-duration="1400"
+                aria-label="500+ Happy Graduates">500+</div>
+              <div class="trust-label">Happy Graduates</div>
+            </div>
+            <div class="trust-item fade-up fade-up-delay-1">
+              <div class="trust-number count-up" data-count="7" data-suffix="+" data-duration="1200"
+                aria-label="7+ Partner Colleges">7+</div>
+              <div class="trust-label">Partner Colleges</div>
+            </div>
+            <div class="trust-item fade-up fade-up-delay-2">
+              <div class="trust-number count-up" data-count="5" data-suffix="★" data-decimals="0" data-duration="1000"
+                aria-label="5 Star Customer Rating">5★</div>
+              <div class="trust-label">Customer Rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <!-- ===== HOW IT WORKS (DARK) ===== -->
       <section class="section-dark section-pad" aria-label="How it works">
@@ -400,136 +503,7 @@
         </div>
       </section>
 
-      <!-- ===== TRUST STRIP ===== -->
-      <div class="trust-strip" id="trust-strip">
-        <div class="container">
-          <div class="trust-grid">
-            <div class="trust-item fade-up">
-              <!--
-                data-count     = final numeric value
-                data-suffix    = text appended after number (e.g. "+", "★", "%")
-                data-prefix    = text prepended before number (optional)
-                data-decimals  = decimal places (default 0)
-                data-duration  = animation ms (default 1500)
-              -->
-              <div class="trust-number count-up" data-count="500" data-suffix="+" data-duration="1400"
-                aria-label="500+ Happy Graduates">500+</div>
-              <div class="trust-label">Happy Graduates</div>
-            </div>
-            <div class="trust-item fade-up fade-up-delay-1">
-              <div class="trust-number count-up" data-count="7" data-suffix="+" data-duration="1200"
-                aria-label="7+ Partner Colleges">7+</div>
-              <div class="trust-label">Partner Colleges</div>
-            </div>
-            <div class="trust-item fade-up fade-up-delay-2">
-              <div class="trust-number count-up" data-count="5" data-suffix="★" data-decimals="0" data-duration="1000"
-                aria-label="5 Star Customer Rating">5★</div>
-              <div class="trust-label">Customer Rating</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- ===== COLLECTION GRID ===== -->
-      <section class="section-light section-pad" aria-label="Full Collection">
-        <div class="container">
-          <div class="collection-header fade-up">
-            <div>
-              <p class="section-label">Our Catalogue</p>
-              <h2 class="section-title">The Full <em>Collection</em></h2>
-            </div>
-            <a href="#category/student-gowns" class="btn btn-outline nav-link" style="display:none;"
-              id="view-all-btn">View All</a>
-          </div>
-
-          <!--
-            Each .collection-card carries:
-              data-grid-item   - marks it for the morph-in observer
-              data-stagger     - index (0-based) -> delay = index * 90ms
-              data-origin      - "left" | "right" | "bottom" - sets starting transform direction
-          -->
-          <div class="collection-grid" id="collection-grid">
-
-            <!-- Student Gowns -->
-            <a href="#category/student-gowns" class="collection-card nav-link" style="aspect-ratio:4/5;" data-grid-item
-              data-stagger="0" data-origin="bottom">
-              <img src="{{ url_for('static', filename='images/collection-student.jpg') }}" alt="Student Gowns"
-                loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <p class="collection-card-label">Graduation Day Ready</p>
-                <h3 class="collection-card-name">Student Gowns</h3>
-              </div>
-            </a>
-
-            <!-- Faculty Gowns -->
-            <a href="#category/faculty-gowns" class="collection-card nav-link" style="aspect-ratio:4/5;" data-grid-item
-              data-stagger="1" data-origin="bottom">
-              <img src="{{ url_for('static', filename='images/faculty-gowns.jpg') }}" alt="Faculty Gowns"
-                loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <h3 class="collection-card-name">Faculty Gowns</h3>
-              </div>
-            </a>
-
-            <!-- Guest Gowns -->
-            <a href="#category/guest-gowns" class="collection-card nav-link" style="aspect-ratio:4/5;" data-grid-item
-              data-stagger="2" data-origin="bottom">
-              <img src="{{ url_for('static', filename='images/guest-gowns.jpg') }}" alt="Guest Gowns" loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <h3 class="collection-card-name">Guest Gowns</h3>
-              </div>
-            </a>
-
-            <!-- PhD Gowns -->
-            <a href="#category/phd-gowns" class="collection-card nav-link" style="aspect-ratio:4/5;" data-grid-item
-              data-stagger="3" data-origin="left">
-              <img src="{{ url_for('static', filename='images/phd-gown.jpg') }}" alt="PhD Gowns" loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <h3 class="collection-card-name">PhD Gowns</h3>
-              </div>
-            </a>
-
-            <!-- Kids Gowns -->
-            <a href="#category/kids-gowns" class="collection-card nav-link" style="aspect-ratio:4/5;" data-grid-item
-              data-stagger="4" data-origin="bottom">
-              <img src="{{ url_for('static', filename='images/kids-gown.jpg') }}" alt="Kids Gowns" loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <h3 class="collection-card-name">Kids Gowns</h3>
-              </div>
-            </a>
-
-            <!-- Customised Hoodies -->
-            <a href="#category/customised-Hoodies" class="collection-card nav-link" style="aspect-ratio:4/5;"
-              data-grid-item data-stagger="5" data-origin="right">
-              <img src="{{ url_for('static', filename='images/products/stoles.jpg') }}" alt="Customised Hoodies"
-                loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <p class="collection-card-label">Accents &amp; Accessories</p>
-                <h3 class="collection-card-name">Customised Hoodies</h3>
-              </div>
-            </a>
-
-            <!-- Framed Certificates -->
-            <a href="#category/framed-certificates" class="collection-card nav-link"
-              style="aspect-ratio:4/5;grid-column:span 1;" data-grid-item data-stagger="6" data-origin="right">
-              <img src="{{ url_for('static', filename='images/framed-certificate.jpg') }}" alt="Framed Certificates"
-                loading="lazy" />
-              <div class="collection-card-overlay"></div>
-              <div class="collection-card-content">
-                <p class="collection-card-label">Keepsakes</p>
-                <h3 class="collection-card-name">Framed Certificates</h3>
-              </div>
-            </a>
-
-          </div>
-        </div>
-      </section>
 
       <!-- ===== QUOTE / TESTIMONIAL (DARK) ===== -->
       <section class="quote-section" aria-label="Testimonial">
@@ -563,7 +537,7 @@
             <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="True Dezigns Logo"
               class="footer-logo" />
             <p>Thiruvananthapuram's premier destination for convocation gown rentals. Dress to celebrate your greatest
-              achievement.</p>
+              achievement. Explore convocation gown rentals in Trivandrum and Kerala, customised convocation shawls and stoles, framed medal certificates, and academic oath scrolls for graduation ceremonies.</p>
             <div class="footer-social" style="margin-top:24px;">
               <a href="https://www.instagram.com/truedesignsconvo?igsh=ZHlwbTQ3a296ZHN0" target="_blank"
                 rel="noopener noreferrer" aria-label="Instagram">
@@ -592,6 +566,7 @@
               <li><a href="#category/kids-gowns" class="nav-link">Kids Gowns</a></li>
               <li><a href="#category/guest-gowns" class="nav-link">Guest Gowns</a></li>
               <li><a href="#category/phd-gowns" class="nav-link">PhD Gowns</a></li>
+              <li><a href="#category/academic-oath-scrolls" class="nav-link">Academic Oath Scrolls</a></li>
             </ul>
           </div>
 
@@ -632,7 +607,9 @@
   </a>
 
   <!-- ===== MAIN JS ===== -->
-  <script type="module" src="{{ url_for('static', filename='main.js') }}?v=3.2"></script>
+  <script defer src="{{ url_for('static', filename='hero-showcase.js') }}?v=1.0"></script>
+  <script defer src="{{ url_for('static', filename='reference-rail.js') }}?v=1.0"></script>
+  <script type="module" src="{{ url_for('static', filename='main.js') }}?v=4.1"></script>
 
   <!-- ===== INLINE ENHANCEMENTS ===== -->
   <script>
@@ -967,6 +944,9 @@
     })();
   </script>
 
+  <script defer src="{{ url_for('static', filename='diamond-discovery.js', v='smooth-spacing-3') }}"></script>
+
+<script>document.getElementById('td-cart-rental-link')?.addEventListener('click',function(){try{sessionStorage.setItem('td-rental-transfer',JSON.stringify(window.getTrueDezignsRentalCart?.()||[]));}catch(e){}});</script>
 </body>
 
 </html>

@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Request a Rental | True Dezigns</title><link rel="stylesheet" href="{{ url_for('static', filename='styles.css', v='rental-page-1') }}"><style>body{margin:0;background:#faf9f6}.rental-page-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px max(24px,calc((100vw - 1160px)/2));background:#fff;border-bottom:1px solid #e5e5e5}.rental-page-header img{width:190px;max-width:45vw;height:auto}.rental-page-header nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.rental-page-header a{font-size:13px;letter-spacing:.08em;text-decoration:none;color:#101735;font-weight:650}.rental-page-header .rental-active{background:#273a7c;color:#fff;padding:13px 18px;border-radius:28px}.td-rental{min-height:calc(100vh - 90px)}@media(max-width:650px){.rental-page-header{padding:12px 16px;flex-wrap:wrap}.rental-page-header nav{gap:12px}.rental-page-header a{font-size:11px}}</style><style>.td-oath-thumbs{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.td-oath-thumb{width:55px;height:55px;padding:2px;border:1px solid #d5d9e4;border-radius:5px;background:white;cursor:pointer}.td-oath-thumb img{width:100%;height:100%;object-fit:cover}.td-oath-description{line-height:1.65;color:#4c5367;font-size:14px;margin:16px 0}</style></head><body><header class="rental-page-header"><a href="/"><img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="True Dezigns"></a><nav><a href="/">Home</a><a href="/#category/gowns">Gowns</a><a href="/#blog">Collaborations</a><a class="rental-active" href="/request-rental" aria-current="page">Request a Rental</a></nav></header>      <!-- ===== RENTAL REQUEST: WhatsApp enquiry, no showroom ===== -->
+      <section class="td-rental" id="rental-request" aria-labelledby="td-rental-title">
+        <div class="td-rental-wrap">
+          <div class="td-rental-intro"><span class="td-rental-eyebrow">TRUE DEZIGNS · RENTAL ENQUIRY</span><h2 id="td-rental-title">Plan your <em>big day.</em></h2><p>Choose your items, tell us when you need them, and let our rental team help you with the details.</p></div>
+          <form id="td-rental-form" class="td-rental-form">
+            <div class="td-rental-main">
+              <div class="td-rental-step"><span class="td-rental-num">01</span><div><h3>Your items</h3><p>Add one or more items to your enquiry.</p></div></div>
+              <div id="td-rental-items" class="td-rental-items"></div>
+              <button type="button" id="td-browse-products" class="td-rental-browse">Browse all products <span aria-hidden="true">↗</span></button>
+              <button type="button" id="td-rental-add" class="td-rental-add">+ Add another item</button>
+              <div class="td-rental-step"><span class="td-rental-num">02</span><div><h3>Rental date</h3><p>When do you need the items?</p></div></div>
+              <div class="td-rental-field"><label for="td-rental-date">Rental start date <span>*</span></label><input type="date" id="td-rental-date" required></div>
+              <div class="td-rental-step"><span class="td-rental-num">03</span><div><h3>When can we call you?</h3><p>Choose a convenient time to speak with our rental team. This is a preference, not a confirmed appointment.</p></div></div>
+              <div class="td-rental-slots" role="group" aria-label="Preferred call time"><label><input type="radio" name="td-call" value="Morning (9 AM – 12 PM)" required><span>Morning<br><small>9 AM – 12 PM</small></span></label><label><input type="radio" name="td-call" value="Afternoon (12 PM – 4 PM)"><span>Afternoon<br><small>12 PM – 4 PM</small></span></label><label><input type="radio" name="td-call" value="Evening (4 PM – 7 PM)"><span>Evening<br><small>4 PM – 7 PM</small></span></label></div>
+              <div class="td-rental-step"><span class="td-rental-num">04</span><div><h3>Anything else?</h3><p>Sizes, institution, delivery questions or other requests.</p></div></div>
+              <div class="td-rental-field"><label for="td-rental-notes">Special instructions (optional)</label><textarea id="td-rental-notes" rows="4" maxlength="1000" placeholder="Tell us anything else we should know..."></textarea></div>
+            </div>
+            <aside class="td-rental-summary" aria-live="polite"><span class="td-rental-eyebrow">YOUR REQUEST</span><h3>Request summary</h3><div id="td-rental-preview"></div><p class="td-rental-disclaimer">This sends an enquiry through WhatsApp. Rental availability and pricing will be confirmed by our team.</p><button type="submit" class="td-rental-send">Send Request on WhatsApp ↗</button></aside>
+          </form>
+        </div>
+      </section>
+
+  <!-- Rental catalogue / detail overlay; uses the same product data as the existing store -->
+  <div id="td-catalog-modal" class="td-catalog-modal" hidden role="dialog" aria-modal="true" aria-label="Browse rental products">
+    <div class="td-catalog-panel">
+      <div class="td-catalog-head"><div><span class="td-rental-eyebrow">TRUE DEZIGNS COLLECTION</span><h2>Choose your <em>item.</em></h2></div><button type="button" id="td-catalog-close" class="td-catalog-close" aria-label="Close product catalogue">×</button></div>
+      <div id="td-catalog-grid" class="td-catalog-grid"></div>
+      <div id="td-catalog-detail" class="td-catalog-detail" hidden></div>
+    </div>
+  </div>
+
+<script>fetch('/static/rental-catalogue.json').then(r=>r.json()).then(p=>{window.trueDezignsCatalogue=p;}).catch(()=>{window.trueDezignsCatalogue=[];});</script><script defer src="{{ url_for('static', filename='rental-request.js', v='3.0') }}"></script></body></html>

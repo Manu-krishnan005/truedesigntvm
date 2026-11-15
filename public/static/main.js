@@ -262,6 +262,32 @@
   window.checkoutViaWhatsApp = checkoutViaWhatsApp;
 
 
+  /* ---------- EDITORIAL CATALOGUE ENHANCEMENTS ---------- */
+  const WISHLIST_KEY = 'true-dezigns-wishlist-v1';
+  function getWishlist() { try { const v = JSON.parse(localStorage.getItem(WISHLIST_KEY) || '[]'); return Array.isArray(v) ? v.filter(k => PRODUCTS[k]) : []; } catch { return []; } }
+  function saveWishlist(keys) { try { localStorage.setItem(WISHLIST_KEY, JSON.stringify(keys)); } catch(e) { console.warn('Wishlist storage unavailable',e); } updateWishlistCount(); }
+  function updateWishlistCount() { const count = document.getElementById('wishlist-count'); if (count) count.textContent = String(getWishlist().length); document.querySelectorAll('[data-wishlist-key]').forEach(b => { const active = getWishlist().includes(b.dataset.wishlistKey); b.setAttribute('aria-pressed', String(active)); b.setAttribute('aria-label', active ? 'Remove from wishlist' : 'Add to wishlist'); b.textContent = active ? '♥' : '♡'; }); }
+  function toggleWishlist(key) { if (!PRODUCTS[key]) return; const current = getWishlist(); saveWishlist(current.includes(key) ? current.filter(k => k !== key) : [...current,key]); if (location.hash === '#wishlist') renderPage('wishlist'); }
+  window.toggleWishlist = toggleWishlist;
+  function productTile(product) { return `<article class="td-product-tile"><div class="td-tile-media"><a href="#product/${product.key}" aria-label="View ${product.name}"><img src="${product.images[0]}" loading="lazy" alt="${product.name}"></a><button type="button" class="td-wishlist-toggle" data-wishlist-key="${product.key}" onclick="toggleWishlist('${product.key}')" aria-label="Add to wishlist">♡</button></div><a class="td-tile-title" href="#product/${product.key}">${product.name}</a><p class="td-tile-caption">${product.category} · ${product.designer || 'True Dezigns'}</p><a class="td-tile-link" href="#product/${product.key}">Explore details <span aria-hidden="true">↗</span></a></article>`; }
+  function renderWishlistPage() { const products = getWishlist().map(k => PRODUCTS[k]).filter(Boolean); return `<section class="td-editorial-page"><div class="td-editorial-heading"><p class="td-kicker">YOUR SAVED SELECTION</p><h1>Wishlist</h1><p>Keep your favourite designs together for your next celebration.</p></div>${products.length ? `<div class="td-product-grid">${products.map(productTile).join('')}</div>` : `<div class="td-empty"><p>No saved designs yet.</p><a href="#category/student-gowns">Explore collections →</a></div>`}</section>`; }
+  function categoryParams() { const raw = location.hash.split('?')[1] || ''; return new URLSearchParams(raw); }
+  function renderEditorialCategory(categoryKey) {
+    const data = CATEGORY_MAP[categoryKey] || CATEGORY_MAP.default;
+    const params = categoryParams(); const q = (params.get('q') || '').toLowerCase().trim(); const size = params.get('size') || ''; const sort = params.get('sort') || 'featured';
+    let products = data.productKeys.map(k => PRODUCTS[k]).filter(Boolean).filter(p => (!q || [p.name,p.category,p.description,...(p.keywords||[])].join(' ').toLowerCase().includes(q)) && (!size || (p.rentalOptions?.sizes||[]).includes(size)));
+    if (sort === 'name') products.sort((a,b)=>a.name.localeCompare(b.name));
+    if (sort === 'name-desc') products.sort((a,b)=>b.name.localeCompare(a.name));
+    const sizes = [...new Set(data.productKeys.flatMap(k=>PRODUCTS[k]?.rentalOptions?.sizes || []))];
+    return `<section class="td-editorial-page"><nav class="td-breadcrumb"><a href="#home">Home</a> / ${data.title}</nav><div class="td-editorial-heading"><p class="td-kicker">TRUE DEZIGNS · THE COLLECTION</p><h1>${data.title}</h1><p>Discover pieces for every milestone.</p></div><form id="td-filter-form" class="td-filter-bar" aria-label="Filter collection"><label>Search <input name="q" type="search" value="${escapeHtml(q)}" placeholder="Search designs"></label><label>Size <select name="size"><option value="">All sizes</option>${sizes.map(v=>`<option value="${escapeHtml(v)}" ${size===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></label><label>Sort <select name="sort"><option value="featured" ${sort==='featured'?'selected':''}>Featured</option><option value="name" ${sort==='name'?'selected':''}>Name A–Z</option><option value="name-desc" ${sort==='name-desc'?'selected':''}>Name Z–A</option></select></label><button type="submit">Apply</button><a href="#category/${categoryKey}">Clear</a></form><p class="td-result-count">${products.length} design${products.length===1?'':'s'}</p>${products.length?`<div class="td-product-grid">${products.map(productTile).join('')}</div>`:'<div class="td-empty">No designs match these filters. Try clearing your selections.</div>'}</section>`;
+  }
+  function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function initEditorialControls(routeType, routeKey) {
+    updateWishlistCount();
+    if (routeType==='category') { const form=document.getElementById('td-filter-form'); form?.addEventListener('submit',e=>{e.preventDefault(); const params=new URLSearchParams(new FormData(form)); for(const [k,v] of [...params]) if(!v || (k==='sort'&&v==='featured')) params.delete(k); const next=`category/${routeKey}${params.size?'?'+params:''}`; if(location.hash.slice(1)===next) renderPage(next); else location.hash=next; }); }
+    if (routeType==='product') { const p=PRODUCTS[routeKey]; if(!p) return; const thumbs=document.querySelectorAll('.td-gallery-thumb'); const track=document.querySelector('.product-slide-track'); thumbs.forEach(b=>b.addEventListener('click',()=>{const index=Number(b.dataset.index); if(track) track.style.transform=`translateX(-${index*100}%)`; thumbs.forEach(t=>t.setAttribute('aria-pressed',String(t===b)));})); }
+  }
+
   /* ---------- CATEGORY / PRODUCT RENDERS ---------- */
   function renderCategoryPage(categoryKey) {
     categoryKey = (categoryKey || 'default').trim();
@@ -345,7 +371,7 @@
           <a href="#home" class="hover:underline">Home</a> &gt; <a href="#category/${product.category.toLowerCase().replace(/\s+/g,'-')}">${product.category}</a> &gt; <span>${product.name}</span>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 td-product-layout">
           <div id="product-image-container"
       class="relative overflow-hidden rounded-lg shadow-lg h-[480px]">
 
@@ -358,16 +384,13 @@
     </div>
 
   </div>
+          <div class="td-gallery-thumbs" aria-label="Product image thumbnails">${images.map((img,i)=>`<button type="button" class="td-gallery-thumb" data-index="${i}" aria-label="View image ${i+1}" aria-pressed="${i===0}"><img src="${img}" alt="" loading="lazy"></button>`).join('')}</div>
 
-
-
-          <div>
+          <div class="td-product-info">
             <p class="text-sm uppercase tracking-widest text-gray-500 mb-1">${product.designer}</p>
             <h1 class="text-4xl font-bold tracking-tight mb-4">${product.name}</h1>
 
-            <div class="mb-6">
-              
-            </div>
+            <button type="button" class="td-detail-wishlist" data-wishlist-key="${product.key}" onclick="toggleWishlist('${product.key}')" aria-label="Add to wishlist">♡</button>
 
             <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
               <div>
@@ -387,13 +410,10 @@
 
             <button id="add-to-bag-btn" class="w-full bg-black text-white font-medium text-sm tracking-widest py-3 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 uppercase">Add To Bag</button>
 
-            <div class="mt-8 border-t border-gray-200 pt-6">
-              <h3 class="text-lg font-bold mb-2">Description and Material Care</h3>
-              <p class="text-gray-600 text-sm">${product.description}</p>
-            </div>
+            <div class="td-product-accordions"><details open><summary>Description and material care</summary><p>${product.description}</p></details><details><summary>Available sizes</summary><p>${(product.rentalOptions?.sizes || ['Contact us']).join(', ')}</p></details><details><summary>Rental options</summary><p>${(product.rentalOptions?.durations || ['Contact us']).join(', ')}</p></details></div>
           </div>
         </div>
-
+        ${relatedProducts.length ? `<div class="td-related"><p class="td-kicker">DISCOVER MORE</p><h2>Related designs</h2><div class="td-product-grid">${relatedProducts.map(productTile).join('')}</div></div>` : ''}
       </section>
     `;
   }
@@ -405,7 +425,7 @@
     window.scrollTo(0,0);
     route = (route || '').trim();
     if (!route) route = 'home';
-    const parts = route.split('/');
+    const parts = route.split('?')[0].split('/');
     const routeType = parts[0] || '';
     const routeKey = parts.slice(1).join('/') || '';
 
@@ -440,8 +460,7 @@
         break;
       case 'category': {
         const catKey = routeKey || 'default';
-        if (!CATEGORY_MAP[catKey]) content = renderCategoryPage('default');
-        else content = renderCategoryPage(catKey);
+        content = renderEditorialCategory(CATEGORY_MAP[catKey] ? catKey : 'default');
         break;
       }
 
@@ -459,6 +478,9 @@
     break;
 
 
+      case 'wishlist':
+        content = renderWishlistPage();
+        break;
       case 'product':
         content = renderProductPage(routeKey);
         break;
@@ -473,6 +495,7 @@
 
     setTimeout(() => {
     contentDiv.innerHTML = content;
+    initEditorialControls(routeType, routeKey);
 
     if (routeType === 'product' && routeKey) {
     initProductPageWiring(routeKey);
@@ -1089,6 +1112,7 @@ function renderBrochuresPage() {
     initFirebase();
 
     renderCart();
+    updateWishlistCount();
     renderPage(window.location.hash.substring(1) || 'home');
   });
 

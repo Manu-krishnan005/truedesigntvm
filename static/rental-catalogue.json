@@ -1,0 +1,91 @@
+[
+  {
+    "key": "student-gown-black",
+    "name": "Standard Student Gown",
+    "category": "Student Gowns",
+    "image": "/static/images/products/student-gown-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "guest-gown",
+    "name": "Guest Gown",
+    "category": "Guest Gowns",
+    "image": "/static/images/products/guest-gown-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "faculty-gown",
+    "name": "Faculty Gown",
+    "category": "Faculty Gowns",
+    "image": "/static/images/products/faculty-gown-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "kids-gown-standard",
+    "name": "Standard Kids Gown",
+    "category": "Kids Gowns",
+    "image": "/static/images/products/kids-gown-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "phd-gown-black",
+    "name": "Standard PhD Gown",
+    "category": "PhD Gowns",
+    "image": "/static/images/products/phd-gown-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "customised-Hoodies-1",
+    "name": "Customised Hoodies",
+    "category": "Customised Hoodies",
+    "image": "/static/images/products/stoles.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "framed-certificate-1",
+    "name": "Framed Certificate with Medal Set",
+    "category": "Framed Certificates",
+    "image": "/static/images/products/framed-certificate-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "convocation-file-1",
+    "name": "Convocation File",
+    "category": "Convocation Files",
+    "image": "/static/images/products/convocation-file-1.jpg",
+    "colour": "",
+    "material": "",
+    "price": null
+  },
+  {
+    "key": "academic-oath-scrolls",
+    "name": "Academic Oath Scrolls",
+    "category": "Academic Oath Scrolls",
+    "image": "/static/images/products/academic-oath-scroll-1.jpg",
+    "images": [
+      "/static/images/products/academic-oath-scroll-1.jpg",
+      "/static/images/products/academic-oath-scroll-2.jpg",
+      "/static/images/products/academic-oath-scroll-3.jpg",
+      "/static/images/products/academic-oath-scroll-4.jpg",
+      "/static/images/products/academic-oath-scroll-5.jpg"
+    ],
+    "colour": "Deep Red / Ivory / Maroon",
+    "material": "Premium velvet fabric",
+    "price": null,
+    "description": "Traditional convocation oath scrolls with gold-embossed institutional or Hippocratic oath text, golden decorative borders, PVC rods, DTF custom printing and cover sticker options. Height 26–33 cm; width 17–19 cm. Pricing varies by design and customisation."
+  }
+]

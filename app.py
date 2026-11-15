@@ -18,6 +18,11 @@ def index():
 
 
 
+@app.route("/request-rental", methods=["GET"])
+def request_rental():
+    return render_template("request_rental.html")
+
+
 @app.route("/_status", methods=["GET"])
 def status():
     """Simple health check for local testing."""
