@@ -18,6 +18,12 @@ def index():
 
 
 
+@app.route("/customised-convocation-shawls", methods=["GET"])
+def customised_convocation_shawls():
+    """Search-indexable page for customised convocation shawls and stoles."""
+    return render_template("customised_convocation_shawls.html")
+
+
 @app.route("/request-rental", methods=["GET"])
 def request_rental():
     return render_template("request_rental.html")
